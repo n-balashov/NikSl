@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "758359023842",
+    "project_id": "niksl-99461",
+    "storage_bucket": "niksl-99461.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:758359023842:android:44c6ac18fb453bff00febb",
+        "android_client_info": {
+          "package_name": "com.pavesid.niksl"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "758359023842-p4aog5ulv61e75rdfhivu1sqfs93g8cp.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAd49afi0JDVJ15xNjR_c9ww_c11mpcXRE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "758359023842-p4aog5ulv61e75rdfhivu1sqfs93g8cp.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
