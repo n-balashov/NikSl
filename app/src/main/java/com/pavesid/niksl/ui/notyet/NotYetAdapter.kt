@@ -6,9 +6,11 @@ import androidx.recyclerview.widget.RecyclerView
 import coil.load
 import coil.transform.RoundedCornersTransformation
 import com.pavesid.niksl.data.model.Achievement
-import com.pavesid.niksl.databinding.DoneItemBinding
+import com.pavesid.niksl.databinding.NotyetItemBinding
 
-class NotYetAdapter : RecyclerView.Adapter<NotYetAdapter.AchievementViewHolder>() {
+internal class NotYetAdapter(
+    private val doneListener: (Achievement) -> Unit
+) : RecyclerView.Adapter<NotYetAdapter.AchievementViewHolder>() {
 
     internal var achievements: List<Achievement> = emptyList()
         set(value) {
@@ -17,14 +19,20 @@ class NotYetAdapter : RecyclerView.Adapter<NotYetAdapter.AchievementViewHolder>(
         }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): AchievementViewHolder =
-        AchievementViewHolder(DoneItemBinding.inflate(LayoutInflater.from(parent.context), parent, false))
+        AchievementViewHolder(
+            NotyetItemBinding.inflate(LayoutInflater.from(parent.context), parent, false),
+            doneListener
+        )
 
     override fun onBindViewHolder(holder: AchievementViewHolder, position: Int) =
         holder.bind(achievements[position], position)
 
     override fun getItemCount(): Int = achievements.size
 
-    class AchievementViewHolder(private val binding: DoneItemBinding) :
+    class AchievementViewHolder(
+        private val binding: NotyetItemBinding,
+        private val doneListener: (Achievement) -> Unit
+    ) :
         RecyclerView.ViewHolder(binding.root) {
 
         fun bind(achievement: Achievement, position: Int) {
@@ -36,6 +44,7 @@ class NotYetAdapter : RecyclerView.Adapter<NotYetAdapter.AchievementViewHolder>(
                     placeholder(android.R.color.black)
                     transformations(RoundedCornersTransformation(8f))
                 }
+                btnDone.setOnClickListener { doneListener(achievement) }
             }
         }
     }

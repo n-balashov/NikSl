@@ -6,7 +6,7 @@ import com.pavesid.niksl.databinding.ActivityMainBinding
 import com.pavesid.niksl.extensions.open
 import com.pavesid.niksl.ui.done.DoneFragment
 import com.pavesid.niksl.ui.home.HomeFragment
-import com.pavesid.niksl.ui.notyet.NotYeatFragment
+import com.pavesid.niksl.ui.notyet.NotYetFragment
 import dagger.hilt.android.AndroidEntryPoint
 import nl.joery.animatedbottombar.AnimatedBottomBar
 
@@ -45,7 +45,7 @@ class MainActivity : AppCompatActivity() {
                     }
                     2 -> {
                         supportFragmentManager.open {
-                            add(R.id.container, NotYeatFragment.newInstance(), null)
+                            add(R.id.container, NotYetFragment.newInstance(), null)
                         }
                     }
                 }
