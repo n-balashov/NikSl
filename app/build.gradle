@@ -82,6 +82,9 @@ dependencies {
     // Coil
     implementation "io.coil-kt:coil:$coil_version"
 
+    // Card-stack
+    implementation "com.yuyakaido.android:card-stack-view:$card_stack_version"
+
     // Bottom navigation
     // implementation 'com.gauravk.bubblenavigation:bubblenavigation:1.0.7'
 
