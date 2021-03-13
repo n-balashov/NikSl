@@ -3,13 +3,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".HomeFragment"
+    tools:context=".ui.home.HomeFragment"
     android:background="@color/teal_200">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <com.yuyakaido.android.cardstackview.CardStackView
+        android:id="@+id/cardStackView"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
-
+        android:layout_height="match_parent" />
 </FrameLayout>

@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.pavesid.niksl.databinding.ActivityMainBinding
 import dagger.hilt.android.AndroidEntryPoint
 import com.pavesid.niksl.extensions.open
+import com.pavesid.niksl.ui.home.HomeFragment
 
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
