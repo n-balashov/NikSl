@@ -9,7 +9,7 @@ import com.pavesid.niksl.R
 import com.pavesid.niksl.data.model.Achievement
 import com.pavesid.niksl.databinding.FragmentHomeBinding
 import com.pavesid.niksl.core.viewBinding
-import com.pavesid.niksl.ui.done.DoneViewModel
+import com.pavesid.niksl.ui.MainViewModel
 import com.yuyakaido.android.cardstackview.CardStackLayoutManager
 import com.yuyakaido.android.cardstackview.CardStackListener
 import com.yuyakaido.android.cardstackview.Direction
@@ -38,7 +38,7 @@ class HomeFragment : Fragment(R.layout.fragment_home), CardStackListener {
         }
     }
 
-    private val viewModel: DoneViewModel by viewModels()
+    private val viewModel: MainViewModel by viewModels()
 
     private lateinit var achievementAdapter: AchievementStackAdapter
 
@@ -57,11 +57,7 @@ class HomeFragment : Fragment(R.layout.fragment_home), CardStackListener {
 
     override fun onCardSwiped(direction: Direction?) {
         val id = achievements[cardStackManager.topPosition - 1].id
-        if (direction?.name == "Left") {
-            viewModel.updateAchievement(false, id)
-        } else {
-            viewModel.updateAchievement(true, id)
-        }
+        viewModel.updateAchievement(direction?.name == "Right", id)
     }
 
     override fun onCardRewound() {

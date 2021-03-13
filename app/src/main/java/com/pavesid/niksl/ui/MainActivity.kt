@@ -1,7 +1,8 @@
-package com.pavesid.niksl
+package com.pavesid.niksl.ui
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import com.pavesid.niksl.R
 import com.pavesid.niksl.databinding.ActivityMainBinding
 import com.pavesid.niksl.extensions.open
 import com.pavesid.niksl.ui.done.DoneFragment

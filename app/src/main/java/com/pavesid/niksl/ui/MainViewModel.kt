@@ -1,4 +1,4 @@
-package com.pavesid.niksl.ui.done
+package com.pavesid.niksl.ui
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -12,7 +12,7 @@ import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.launch
 
 @HiltViewModel
-class DoneViewModel @Inject constructor(
+class MainViewModel @Inject constructor(
     private val repository: DataRepository,
     private val dispatcher: CoroutineDispatcher
 ) : ViewModel() {
