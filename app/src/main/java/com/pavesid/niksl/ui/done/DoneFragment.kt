@@ -6,7 +6,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager.VERTICAL
-import com.pavesid.niksl.MainActivity
+import com.pavesid.niksl.ui.MainActivity
 import com.pavesid.niksl.R
 import com.pavesid.niksl.core.OverlapDecoration
 import com.pavesid.niksl.core.viewBinding
