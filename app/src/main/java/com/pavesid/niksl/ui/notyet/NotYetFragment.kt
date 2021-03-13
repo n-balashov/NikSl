@@ -18,6 +18,7 @@ import dagger.hilt.android.AndroidEntryPoint
 class NotYetFragment : Fragment(R.layout.fragment_done) {
 
     private val viewModel: MainViewModel by viewModels()
+
     private val binding: FragmentDoneBinding by viewBinding(FragmentDoneBinding::bind)
 
     private lateinit var notYetAdapter: NotYetAdapter
