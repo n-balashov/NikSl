@@ -10,8 +10,6 @@ import com.pavesid.niksl.databinding.FragmentHomeBinding
 class HomeFragment : Fragment() {
 
 //    private val binding by viewBinding(FragmentHomeBinding::bind)
-
-
     private var _binding: FragmentHomeBinding? = null
     private val binding: FragmentHomeBinding
         get() = _binding!!
