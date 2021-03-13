@@ -9,41 +9,42 @@
     android:layout_gravity="center">
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/skip_button"
+        android:id="@+id/not_done_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
         android:layout_centerVertical="true"
         android:src="@drawable/skip_red_24dp"
-        android:layout_margin="16dp"
+        android:layout_margin="@dimen/spacing_normal_16"
         app:backgroundTint="@android:color/white"
         app:fabSize="auto"
+        app:rippleColor="@color/ripple_not_done"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/like_button"
+        app:layout_constraintEnd_toStartOf="@+id/done_button"
         app:layout_constraintStart_toStartOf="parent"
-        app:rippleColor="#22ED7563" />
+        android:contentDescription="@string/not_done" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/like_button"
+        android:id="@+id/done_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
         android:layout_centerVertical="true"
         android:src="@drawable/like_green_24dp"
-        android:layout_margin="16dp"
+        android:layout_margin="@dimen/spacing_normal_16"
         app:backgroundTint="@android:color/white"
         app:fabSize="auto"
+        app:rippleColor="@color/ripple_done"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@id/skip_button"
-        app:rippleColor="#226FE2B3" />
+        app:layout_constraintStart_toEndOf="@id/not_done_button"
+        android:contentDescription="@string/done" />
 
     <com.yuyakaido.android.cardstackview.CardStackView
         android:id="@+id/card_stack_view"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:clipToPadding="false"
-        android:padding="4dp"
-        app:layout_constraintBottom_toTopOf="@+id/skip_button"
+        android:padding="@dimen/spacing_extra_small_4"
+        app:layout_constraintBottom_toTopOf="@+id/not_done_button"
         app:layout_constraintTop_toTopOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>

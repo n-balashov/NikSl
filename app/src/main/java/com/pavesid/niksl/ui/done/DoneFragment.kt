@@ -41,7 +41,6 @@ class DoneFragment : Fragment(R.layout.fragment_done) {
     }
 
     private fun subscribe() {
-        viewModel.loadDoneAchievements()
         viewModel.doneAchievements.observe(this.viewLifecycleOwner) {
             doneAdapter.achievements = it
         }

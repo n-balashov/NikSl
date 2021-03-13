@@ -81,7 +81,6 @@ class HomeFragment : Fragment(R.layout.fragment_home), CardStackListener {
     }
 
     private fun subscribe() {
-        viewModel.loadNotViewedAchievements()
         viewModel.notViewedAchievements.observe(this.viewLifecycleOwner) {
             achievements = it
             achievementAdapter.achievements = it
@@ -89,7 +88,7 @@ class HomeFragment : Fragment(R.layout.fragment_home), CardStackListener {
     }
 
     private fun setupButton() {
-        binding.skipButton.setOnClickListener {
+        binding.notDoneButton.setOnClickListener {
             val setting = SwipeAnimationSetting.Builder()
                 .setDirection(Direction.Left)
                 .setDuration(Duration.Normal.duration)
@@ -99,7 +98,7 @@ class HomeFragment : Fragment(R.layout.fragment_home), CardStackListener {
             binding.cardStackView.swipe()
         }
 
-        binding.likeButton.setOnClickListener {
+        binding.doneButton.setOnClickListener {
             val setting = SwipeAnimationSetting.Builder()
                 .setDirection(Direction.Right)
                 .setDuration(Duration.Normal.duration)

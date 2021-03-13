@@ -38,5 +38,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:abb_tabs="@menu/bottom_navigation_menu"
+        app:abb_rippleEnabled="true"
         app:abb_selectedIndex="1" />
 </androidx.constraintlayout.widget.ConstraintLayout>

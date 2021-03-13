@@ -45,7 +45,6 @@ class NotYetFragment : Fragment(R.layout.fragment_done) {
     }
 
     private fun subscribe() {
-        viewModel.loadNotYetAchievements()
         viewModel.notYetAchievements.observe(this.viewLifecycleOwner) {
             notYetAdapter.achievements = it
         }

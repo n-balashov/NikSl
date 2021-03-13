@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+	<!-- Spacing -->
+	<dimen name="spacing_extra_extra_large_48">48dp</dimen>
+	<dimen name="spacing_extra_large_36">36dp</dimen>
+	<dimen name="spacing_large_24">24dp</dimen>
+	<dimen name="spacing_normal_16">16dp</dimen>
+	<dimen name="spacing_small_normal_12">12dp</dimen>
+	<dimen name="spacing_small_8">8dp</dimen>
+	<dimen name="spacing_extra_small_4">4dp</dimen>
+</resources>
