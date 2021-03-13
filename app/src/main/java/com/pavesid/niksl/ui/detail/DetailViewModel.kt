@@ -9,6 +9,7 @@ import com.google.firebase.database.ChildEventListener
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.ValueEventListener
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
 import com.pavesid.niksl.data.model.Achievement
@@ -57,16 +58,20 @@ class DetailViewModel @Inject constructor(
             Firebase.database("https://niksl-99461-default-rtdb.europe-west1.firebasedatabase.app/").getReference(
                 achievement.id.toString()
             )
-        database.addChildEventListener(childEventListener)
-        database.orderByChild("data").get().addOnSuccessListener { snapshot ->
-            for (item in snapshot.children) {
-                val message = item.getValue(Message::class.java)
-                list.add(message!!)
+        database.orderByChild("data").addListenerForSingleValueEvent(object : ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+                for (item in snapshot.children) {
+                    val message = item.getValue(Message::class.java)
+                    list.add(message!!)
+                }
+                _messages.postValue(list.toList())
             }
-            _messages.postValue(list.toList())
-        }.addOnFailureListener {
-            Log.e("firebase", "Error getting data", it)
-        }
+
+            override fun onCancelled(error: DatabaseError) {
+                Log.e("firebase", "Error getting data", error.toException())
+            }
+        })
+        database.addChildEventListener(childEventListener)
     }
 
     override fun onCleared() {
