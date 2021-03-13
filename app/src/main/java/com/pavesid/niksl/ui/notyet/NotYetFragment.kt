@@ -2,19 +2,20 @@ package com.pavesid.niksl.ui.notyet
 
 import android.os.Bundle
 import android.view.View
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager.VERTICAL
 import com.pavesid.niksl.R
 import com.pavesid.niksl.core.OverlapDecoration
-import com.pavesid.niksl.databinding.FragmentDoneBinding
 import com.pavesid.niksl.core.viewBinding
+import com.pavesid.niksl.databinding.FragmentDoneBinding
 import com.pavesid.niksl.ui.done.DoneViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class NotYeatFragment : Fragment(R.layout.fragment_done) {
+class NotYetFragment : Fragment(R.layout.fragment_done) {
 
     private val viewModel: DoneViewModel by viewModels()
     private val binding: FragmentDoneBinding by viewBinding(FragmentDoneBinding::bind)
@@ -29,7 +30,9 @@ class NotYeatFragment : Fragment(R.layout.fragment_done) {
     }
 
     private fun initView() {
-        notYetAdapter = NotYetAdapter()
+        notYetAdapter = NotYetAdapter {
+            Toast.makeText(context, "Done", Toast.LENGTH_SHORT).show()
+        }
         val moviesLayoutManager = LinearLayoutManager(context, VERTICAL, false)
         binding.rvDone.apply {
             setHasFixedSize(true)
@@ -49,6 +52,6 @@ class NotYeatFragment : Fragment(R.layout.fragment_done) {
 
     companion object {
 
-        fun newInstance() = NotYeatFragment()
+        fun newInstance() = NotYetFragment()
     }
 }
