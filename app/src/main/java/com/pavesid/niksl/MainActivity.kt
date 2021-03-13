@@ -6,6 +6,7 @@ import com.pavesid.niksl.databinding.ActivityMainBinding
 import com.pavesid.niksl.extensions.open
 import com.pavesid.niksl.ui.done.DoneFragment
 import com.pavesid.niksl.ui.home.HomeFragment
+import com.pavesid.niksl.ui.notyet.NotYeatFragment
 import dagger.hilt.android.AndroidEntryPoint
 import nl.joery.animatedbottombar.AnimatedBottomBar
 
@@ -20,11 +21,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         savedInstanceState ?: supportFragmentManager.open {
-            add(R.id.container, DoneFragment.newInstance(), null)
-        }
-
-        savedInstanceState ?: supportFragmentManager.open {
-            add(R.id.container, DoneFragment.newInstance(), null)
+            add(R.id.container, HomeFragment.newInstance(), null)
         }
 
         binding.bottomNavigation.setOnTabSelectListener(object :
@@ -47,6 +44,9 @@ class MainActivity : AppCompatActivity() {
                         }
                     }
                     2 -> {
+                        supportFragmentManager.open {
+                            add(R.id.container, NotYeatFragment.newInstance(), null)
+                        }
                     }
                 }
             }

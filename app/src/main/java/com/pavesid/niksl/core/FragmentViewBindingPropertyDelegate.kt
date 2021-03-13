@@ -1,4 +1,4 @@
-package com.pavesid.niksl
+package com.pavesid.niksl.core
 
 import android.os.Handler
 import android.os.Looper

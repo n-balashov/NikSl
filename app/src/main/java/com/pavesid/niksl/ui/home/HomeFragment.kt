@@ -7,7 +7,7 @@ import androidx.fragment.app.Fragment
 import com.pavesid.niksl.R
 import com.pavesid.niksl.data.model.Achievement
 import com.pavesid.niksl.databinding.FragmentHomeBinding
-import com.pavesid.niksl.viewBinding
+import com.pavesid.niksl.core.viewBinding
 import com.yuyakaido.android.cardstackview.CardStackLayoutManager
 import com.yuyakaido.android.cardstackview.CardStackListener
 import com.yuyakaido.android.cardstackview.Direction
@@ -32,14 +32,7 @@ class HomeFragment : Fragment(R.layout.fragment_home), CardStackListener {
         }
     }
 
-    private val achievements = listOf(
-        Achievement(0L, "", ""),
-        Achievement(1L, "", ""),
-        Achievement(2L, "", ""),
-        Achievement(3L, "", ""),
-        Achievement(4L, "", ""),
-        Achievement(5L, "", "")
-    )
+    private val achievements = emptyList<Achievement>()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -51,7 +44,11 @@ class HomeFragment : Fragment(R.layout.fragment_home), CardStackListener {
     }
 
     override fun onCardSwiped(direction: Direction?) {
-        Toast.makeText(requireContext(), "onCardSwiped ${direction?.name} -> ${achievements[cardStack.topPosition - 1].id}", Toast.LENGTH_SHORT).show()
+        Toast.makeText(
+            requireContext(),
+            "onCardSwiped ${direction?.name} -> ${achievements[cardStack.topPosition - 1].id}",
+            Toast.LENGTH_SHORT
+        ).show()
     }
 
     override fun onCardRewound() {
