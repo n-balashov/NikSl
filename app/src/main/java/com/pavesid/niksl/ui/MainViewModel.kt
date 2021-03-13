@@ -16,26 +16,11 @@ class MainViewModel @Inject constructor(
     private val dispatcher: CoroutineDispatcher
 ) : ViewModel() {
 
-    private val _notViewedAchievements = repository.getNotViewedAchievements()
-    val notViewedAchievements: LiveData<List<Achievement>> = _notViewedAchievements
+    val notViewedAchievements: LiveData<List<Achievement>> = repository.getNotViewedAchievements()
 
-    private val _doneAchievements = repository.getDoneAchievements()
-    val doneAchievements: LiveData<List<Achievement>> = _doneAchievements
+    val doneAchievements: LiveData<List<Achievement>> = repository.getDoneAchievements()
 
-    private val _notYetAchievements = repository.getNotYetAchievements()
-    val notYetAchievements: LiveData<List<Achievement>> = _notYetAchievements
-
-//    fun loadDoneAchievements() = viewModelScope.launch(dispatcher) {
-//        _doneAchievements.postValue(repository.getDoneAchievements())
-//    }
-//
-//    fun loadNotYetAchievements() = viewModelScope.launch(dispatcher) {
-//        _notYetAchievements.postValue(repository.getNotYetAchievements())
-//    }
-//
-//    fun loadNotViewedAchievements() = viewModelScope.launch(dispatcher) {
-//        _notViewedAchievements.postValue(repository.getNotViewedAchievements())
-//    }
+    val notYetAchievements: LiveData<List<Achievement>> = repository.getNotYetAchievements()
 
     fun updateAchievement(done: Boolean, id: Long) = viewModelScope.launch(dispatcher) {
         repository.updateAchievement(done, id)
