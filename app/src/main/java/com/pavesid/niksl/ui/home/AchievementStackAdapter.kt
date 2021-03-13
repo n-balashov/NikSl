@@ -39,31 +39,31 @@ class AchievementStackAdapter() : RecyclerView.Adapter<AchievementStackAdapter.V
                 0 -> binding.achieve.setBackgroundColor(
                     ContextCompat.getColor(
                         binding.root.context,
-                        R.color.blue_inactive
+                        R.color.white
                     )
                 )
                 1 -> binding.achieve.setBackgroundColor(
                     ContextCompat.getColor(
                         binding.root.context,
-                        R.color.green_inactive
+                        R.color.white
                     )
                 )
                 2 -> binding.achieve.setBackgroundColor(
                     ContextCompat.getColor(
                         binding.root.context,
-                        R.color.orange_inactive
+                        R.color.white
                     )
                 )
                 3 -> binding.achieve.setBackgroundColor(
                     ContextCompat.getColor(
                         binding.root.context,
-                        R.color.purple_inactive
+                        R.color.white
                     )
                 )
                 else -> binding.achieve.setBackgroundColor(
                     ContextCompat.getColor(
                         binding.root.context,
-                        R.color.red_inactive
+                        R.color.white
                     )
                 )
             }
