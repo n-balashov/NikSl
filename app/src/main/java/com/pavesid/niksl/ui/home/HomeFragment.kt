@@ -2,6 +2,7 @@ package com.pavesid.niksl.ui.home
 
 import android.os.Bundle
 import android.view.View
+import android.view.animation.AccelerateInterpolator
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
@@ -13,7 +14,9 @@ import com.pavesid.niksl.viewBinding
 import com.yuyakaido.android.cardstackview.CardStackLayoutManager
 import com.yuyakaido.android.cardstackview.CardStackListener
 import com.yuyakaido.android.cardstackview.Direction
+import com.yuyakaido.android.cardstackview.Duration
 import com.yuyakaido.android.cardstackview.StackFrom
+import com.yuyakaido.android.cardstackview.SwipeAnimationSetting
 import com.yuyakaido.android.cardstackview.SwipeableMethod
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -22,7 +25,7 @@ class HomeFragment : Fragment(R.layout.fragment_home), CardStackListener {
 
     private val binding by viewBinding(FragmentHomeBinding::bind)
 
-    private val cardStack by lazy {
+    private val cardStackManager by lazy {
         CardStackLayoutManager(requireContext(), this@HomeFragment).apply {
             setStackFrom(StackFrom.Left)
             setVisibleCount(3)
@@ -32,7 +35,7 @@ class HomeFragment : Fragment(R.layout.fragment_home), CardStackListener {
             setSwipeThreshold(0.3f)
             setCanScrollHorizontal(true)
             setCanScrollVertical(false)
-            setSwipeableMethod(SwipeableMethod.Manual)
+            setSwipeableMethod(SwipeableMethod.AutomaticAndManual)
         }
     }
 
@@ -47,13 +50,14 @@ class HomeFragment : Fragment(R.layout.fragment_home), CardStackListener {
 
         initView()
         subscribe()
+        setupButton()
     }
 
     override fun onCardDragging(direction: Direction?, ratio: Float) {
     }
 
     override fun onCardSwiped(direction: Direction?) {
-        Toast.makeText(requireContext(), "onCardSwiped ${direction?.name} -> ${achievements[cardStack.topPosition - 1].id}", Toast.LENGTH_SHORT).show()
+        Toast.makeText(requireContext(), "onCardSwiped ${direction?.name} -> ${achievements[cardStackManager.topPosition - 1].id}", Toast.LENGTH_SHORT).show()
     }
 
     override fun onCardRewound() {
@@ -71,7 +75,7 @@ class HomeFragment : Fragment(R.layout.fragment_home), CardStackListener {
     private fun initView() {
         achievementAdapter = AchievementStackAdapter()
         binding.cardStackView.apply {
-            layoutManager = cardStack
+            layoutManager = cardStackManager
             adapter = achievementAdapter
         }
     }
@@ -80,6 +84,28 @@ class HomeFragment : Fragment(R.layout.fragment_home), CardStackListener {
         viewModel.achievements.observe(this.viewLifecycleOwner) {
             achievements = it
             achievementAdapter.achievements = it
+        }
+    }
+
+    private fun setupButton() {
+        binding.skipButton.setOnClickListener {
+            val setting = SwipeAnimationSetting.Builder()
+                .setDirection(Direction.Left)
+                .setDuration(Duration.Normal.duration)
+                .setInterpolator(AccelerateInterpolator())
+                .build()
+            cardStackManager.setSwipeAnimationSetting(setting)
+            binding.cardStackView.swipe()
+        }
+
+        binding.likeButton.setOnClickListener {
+            val setting = SwipeAnimationSetting.Builder()
+                .setDirection(Direction.Right)
+                .setDuration(Duration.Normal.duration)
+                .setInterpolator(AccelerateInterpolator())
+                .build()
+            cardStackManager.setSwipeAnimationSetting(setting)
+            binding.cardStackView.swipe()
         }
     }
 
