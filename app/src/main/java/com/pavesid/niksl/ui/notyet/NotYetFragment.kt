@@ -31,6 +31,7 @@ class NotYetFragment : Fragment(R.layout.fragment_done) {
 
     private fun initView() {
         notYetAdapter = NotYetAdapter {
+            viewModel.updateAchievement(true, it.id)
             Toast.makeText(context, "Done", Toast.LENGTH_SHORT).show()
         }
         val moviesLayoutManager = LinearLayoutManager(context, VERTICAL, false)
