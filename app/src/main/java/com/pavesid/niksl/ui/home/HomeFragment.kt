@@ -4,16 +4,20 @@ import android.os.Bundle
 import android.view.View
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import com.pavesid.niksl.R
 import com.pavesid.niksl.data.model.Achievement
 import com.pavesid.niksl.databinding.FragmentHomeBinding
+import com.pavesid.niksl.ui.done.DoneViewModel
 import com.pavesid.niksl.viewBinding
 import com.yuyakaido.android.cardstackview.CardStackLayoutManager
 import com.yuyakaido.android.cardstackview.CardStackListener
 import com.yuyakaido.android.cardstackview.Direction
 import com.yuyakaido.android.cardstackview.StackFrom
 import com.yuyakaido.android.cardstackview.SwipeableMethod
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class HomeFragment : Fragment(R.layout.fragment_home), CardStackListener {
 
     private val binding by viewBinding(FragmentHomeBinding::bind)
@@ -32,19 +36,17 @@ class HomeFragment : Fragment(R.layout.fragment_home), CardStackListener {
         }
     }
 
-    private val achievements = listOf(
-        Achievement(0L, "", ""),
-        Achievement(1L, "", ""),
-        Achievement(2L, "", ""),
-        Achievement(3L, "", ""),
-        Achievement(4L, "", ""),
-        Achievement(5L, "", "")
-    )
+    private val viewModel: DoneViewModel by viewModels()
+
+    private lateinit var achievementAdapter: AchievementStackAdapter
+
+    private lateinit var achievements: List<Achievement>
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
         initView()
+        subscribe()
     }
 
     override fun onCardDragging(direction: Direction?, ratio: Float) {
@@ -67,11 +69,17 @@ class HomeFragment : Fragment(R.layout.fragment_home), CardStackListener {
     }
 
     private fun initView() {
-        val achievementAdapter = AchievementStackAdapter()
-        achievementAdapter.achievements = achievements
+        achievementAdapter = AchievementStackAdapter()
         binding.cardStackView.apply {
             layoutManager = cardStack
             adapter = achievementAdapter
+        }
+    }
+
+    private fun subscribe() {
+        viewModel.achievements.observe(this.viewLifecycleOwner) {
+            achievements = it
+            achievementAdapter.achievements = it
         }
     }
 

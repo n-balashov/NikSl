@@ -20,11 +20,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         savedInstanceState ?: supportFragmentManager.open {
-            add(R.id.container, DoneFragment.newInstance(), null)
-        }
-
-        savedInstanceState ?: supportFragmentManager.open {
-            add(R.id.container, DoneFragment.newInstance(), null)
+            add(R.id.container, HomeFragment.newInstance(), null)
         }
 
         binding.bottomNavigation.setOnTabSelectListener(object :
