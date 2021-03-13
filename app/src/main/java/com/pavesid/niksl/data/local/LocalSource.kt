@@ -1,3 +1,8 @@
 package com.pavesid.niksl.data.local
 
-interface LocalSource
+import com.pavesid.niksl.data.model.Achievement
+
+interface LocalSource {
+
+    suspend fun getAllAchievements(): List<Achievement>
+}
