@@ -9,5 +9,6 @@
     <com.yuyakaido.android.cardstackview.CardStackView
         android:id="@+id/cardStackView"
         android:layout_width="match_parent"
+        tools:listitem="@layout/achievement_card"
         android:layout_height="match_parent" />
 </FrameLayout>

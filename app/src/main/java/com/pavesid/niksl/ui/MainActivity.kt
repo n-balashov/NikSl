@@ -4,8 +4,10 @@ import android.os.Bundle
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import com.pavesid.niksl.R
+import com.pavesid.niksl.data.model.Achievement
 import com.pavesid.niksl.databinding.ActivityMainBinding
 import com.pavesid.niksl.extensions.open
+import com.pavesid.niksl.ui.detail.DetailFragment
 import com.pavesid.niksl.ui.done.DoneFragment
 import com.pavesid.niksl.ui.home.HomeFragment
 import com.pavesid.niksl.ui.notyet.NotYetFragment
@@ -86,6 +88,12 @@ class MainActivity : AppCompatActivity() {
                     AnimatedBottomBar.Badge(it.size.toString())
                 )
             }
+        }
+    }
+
+    fun openDetails(achievement: Achievement) {
+        supportFragmentManager.open {
+            add(R.id.main, DetailFragment.newInstance(achievement), null).addToBackStack(null)
         }
     }
 }
