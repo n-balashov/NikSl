@@ -23,6 +23,10 @@ class MainActivity : AppCompatActivity() {
             add(R.id.container, DoneFragment.newInstance(), null)
         }
 
+        savedInstanceState ?: supportFragmentManager.open {
+            add(R.id.container, DoneFragment.newInstance(), null)
+        }
+
         binding.bottomNavigation.setOnTabSelectListener(object :
             AnimatedBottomBar.OnTabSelectListener {
             override fun onTabSelected(
