@@ -1,0 +1,22 @@
+name: Android CI
+
+on:
+  pull_request:
+    branches:
+      - 'master'
+
+jobs:
+  test:
+    name: Tests
+    runs-on: ubuntu-latest
+
+  lint:
+    name: Lint Tests
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v1
+      - name: Run ktlint
+        run: bash ./gradlew :app:ktlint
+      - name: Run lint
+        run: bash ./gradlew :app:lintDebug
