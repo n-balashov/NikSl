@@ -2,13 +2,13 @@ package com.pavesid.niksl.ui.home
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
-import com.pavesid.niksl.R
+import coil.load
+import coil.transform.RoundedCornersTransformation
 import com.pavesid.niksl.data.model.Achievement
 import com.pavesid.niksl.databinding.AchievementCardBinding
 
-class AchievementStackAdapter() : RecyclerView.Adapter<AchievementStackAdapter.ViewHolder>() {
+class AchievementStackAdapter : RecyclerView.Adapter<AchievementStackAdapter.ViewHolder>() {
 
     internal var achievements: List<Achievement> = emptyList()
         set(value) {
@@ -26,7 +26,7 @@ class AchievementStackAdapter() : RecyclerView.Adapter<AchievementStackAdapter.V
         )
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.bind(position)
+        holder.bind(achievement = achievements[position])
     }
 
     override fun getItemCount(): Int = achievements.size
@@ -34,38 +34,15 @@ class AchievementStackAdapter() : RecyclerView.Adapter<AchievementStackAdapter.V
     class ViewHolder(private val binding: AchievementCardBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
-        fun bind(position: Int) =
-            when (position % 4) {
-                0 -> binding.achieve.setBackgroundColor(
-                    ContextCompat.getColor(
-                        binding.root.context,
-                        R.color.white
-                    )
-                )
-                1 -> binding.achieve.setBackgroundColor(
-                    ContextCompat.getColor(
-                        binding.root.context,
-                        R.color.white
-                    )
-                )
-                2 -> binding.achieve.setBackgroundColor(
-                    ContextCompat.getColor(
-                        binding.root.context,
-                        R.color.white
-                    )
-                )
-                3 -> binding.achieve.setBackgroundColor(
-                    ContextCompat.getColor(
-                        binding.root.context,
-                        R.color.white
-                    )
-                )
-                else -> binding.achieve.setBackgroundColor(
-                    ContextCompat.getColor(
-                        binding.root.context,
-                        R.color.white
-                    )
-                )
+        fun bind(achievement: Achievement) {
+            binding.apply {
+                text.text = achievement.name
+                image.load(achievement.imagePath) {
+                    crossfade(true)
+                    placeholder(android.R.color.black)
+                    transformations(RoundedCornersTransformation(8f, 8f, 0f, 0f))
+                }
             }
+        }
     }
 }

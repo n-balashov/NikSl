@@ -1,4 +1,4 @@
-package com.pavesid.niksl.ui.done
+package com.pavesid.niksl.core
 
 import android.graphics.Rect
 import android.view.View
