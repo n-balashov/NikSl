@@ -8,9 +8,13 @@ import com.pavesid.niksl.R
 import com.pavesid.niksl.data.model.Achievement
 import com.pavesid.niksl.databinding.AchievementCardBinding
 
-class AchievementStackAdapter(
-    private var achievements: List<Achievement> = emptyList()
-) : RecyclerView.Adapter<AchievementStackAdapter.ViewHolder>() {
+class AchievementStackAdapter() : RecyclerView.Adapter<AchievementStackAdapter.ViewHolder>() {
+
+    internal var achievements: List<Achievement> = emptyList()
+        set(value) {
+            field = value
+            notifyDataSetChanged()
+        }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder =
         ViewHolder(
