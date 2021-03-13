@@ -6,6 +6,8 @@ plugins {
     id 'dagger.hilt.android.plugin'
 }
 
+apply from: "../ktlint.gradle"
+
 android {
     compileSdkVersion 30
     buildToolsVersion "30.0.3"
