@@ -8,7 +8,9 @@ import coil.transform.RoundedCornersTransformation
 import com.pavesid.niksl.data.model.Achievement
 import com.pavesid.niksl.databinding.DoneItemBinding
 
-class DoneAdapter : RecyclerView.Adapter<DoneAdapter.AchievementViewHolder>() {
+class DoneAdapter(
+    private val clickListener: (Achievement) -> Unit
+) : RecyclerView.Adapter<DoneAdapter.AchievementViewHolder>() {
 
     internal var achievements: List<Achievement> = emptyList()
         set(value) {
@@ -20,14 +22,14 @@ class DoneAdapter : RecyclerView.Adapter<DoneAdapter.AchievementViewHolder>() {
         AchievementViewHolder(DoneItemBinding.inflate(LayoutInflater.from(parent.context), parent, false))
 
     override fun onBindViewHolder(holder: AchievementViewHolder, position: Int) =
-        holder.bind(achievements[position], position)
+        holder.bind(achievements[position], position, clickListener)
 
     override fun getItemCount(): Int = achievements.size
 
     class AchievementViewHolder(private val binding: DoneItemBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
-        fun bind(achievement: Achievement, position: Int) {
+        fun bind(achievement: Achievement, position: Int, clickListener: (Achievement) -> Unit) {
             binding.apply {
                 card.rotation = if (position % 2 == 0) 12F else -12F
                 text.text = achievement.name
@@ -36,6 +38,7 @@ class DoneAdapter : RecyclerView.Adapter<DoneAdapter.AchievementViewHolder>() {
                     placeholder(android.R.color.black)
                     transformations(RoundedCornersTransformation(8f))
                 }
+                root.setOnClickListener { clickListener(achievement) }
             }
         }
     }

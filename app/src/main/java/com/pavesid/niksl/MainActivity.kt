@@ -2,8 +2,10 @@ package com.pavesid.niksl
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import com.pavesid.niksl.data.model.Achievement
 import com.pavesid.niksl.databinding.ActivityMainBinding
 import com.pavesid.niksl.extensions.open
+import com.pavesid.niksl.ui.detail.DetailFragment
 import com.pavesid.niksl.ui.done.DoneFragment
 import com.pavesid.niksl.ui.home.HomeFragment
 import com.pavesid.niksl.ui.notyet.NotYetFragment
@@ -55,5 +57,11 @@ class MainActivity : AppCompatActivity() {
             override fun onTabReselected(index: Int, tab: AnimatedBottomBar.Tab) {
             }
         })
+    }
+
+    fun openDetails(achievement: Achievement) {
+        supportFragmentManager.open {
+            add(R.id.main, DetailFragment.newInstance(achievement), null).addToBackStack(null)
+        }
     }
 }
