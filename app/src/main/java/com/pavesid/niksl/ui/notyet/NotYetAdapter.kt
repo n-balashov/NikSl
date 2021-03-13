@@ -2,6 +2,7 @@ package com.pavesid.niksl.ui.notyet
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
 import coil.transform.RoundedCornersTransformation
@@ -12,11 +13,11 @@ internal class NotYetAdapter(
     private val doneListener: (Achievement) -> Unit
 ) : RecyclerView.Adapter<NotYetAdapter.AchievementViewHolder>() {
 
-    internal var achievements: List<Achievement> = emptyList()
-        set(value) {
-            field = value
-            notifyDataSetChanged()
-        }
+    private var achievements: List<Achievement> = emptyList()
+//        set(value) {
+//            field = value
+//            notifyDataSetChanged()
+//        }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): AchievementViewHolder =
         AchievementViewHolder(
@@ -28,6 +29,24 @@ internal class NotYetAdapter(
         holder.bind(achievements[position], position)
 
     override fun getItemCount(): Int = achievements.size
+
+    fun updateData(data: List<Achievement>) {
+        val diffCallBack = object : DiffUtil.Callback() {
+            override fun areItemsTheSame(oldItemPosition: Int, newItemPosition: Int): Boolean =
+                achievements[oldItemPosition].id == data[newItemPosition].id
+
+            override fun getOldListSize(): Int = achievements.size
+
+            override fun getNewListSize(): Int = data.size
+
+            override fun areContentsTheSame(oldItemPosition: Int, newItemPosition: Int): Boolean =
+                achievements[oldItemPosition].id == data[newItemPosition].id
+        }
+
+        val diffResult = DiffUtil.calculateDiff(diffCallBack)
+        achievements = data.toMutableList()
+        diffResult.dispatchUpdatesTo(this)
+    }
 
     class AchievementViewHolder(
         private val binding: NotyetItemBinding,
