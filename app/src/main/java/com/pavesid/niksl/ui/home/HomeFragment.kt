@@ -11,7 +11,6 @@ import com.pavesid.niksl.data.model.Achievement
 import com.pavesid.niksl.databinding.FragmentHomeBinding
 import com.pavesid.niksl.core.viewBinding
 import com.pavesid.niksl.ui.done.DoneViewModel
-import com.pavesid.niksl.viewBinding
 import com.yuyakaido.android.cardstackview.CardStackLayoutManager
 import com.yuyakaido.android.cardstackview.CardStackListener
 import com.yuyakaido.android.cardstackview.Direction
@@ -60,7 +59,7 @@ class HomeFragment : Fragment(R.layout.fragment_home), CardStackListener {
     override fun onCardSwiped(direction: Direction?) {
         Toast.makeText(
             requireContext(),
-            "onCardSwiped ${direction?.name} -> ${achievements[cardStack.topPosition - 1].id}",
+            "onCardSwiped ${direction?.name} -> ${achievements[cardStackManager.topPosition - 1].id}",
             Toast.LENGTH_SHORT
         ).show()
     }
