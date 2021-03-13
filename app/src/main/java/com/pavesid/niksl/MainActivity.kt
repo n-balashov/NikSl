@@ -1,12 +1,12 @@
 package com.pavesid.niksl
 
 import android.os.Bundle
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.pavesid.niksl.databinding.ActivityMainBinding
-import dagger.hilt.android.AndroidEntryPoint
 import com.pavesid.niksl.extensions.open
 import com.pavesid.niksl.ui.home.HomeFragment
+import dagger.hilt.android.AndroidEntryPoint
+import nl.joery.animatedbottombar.AnimatedBottomBar
 
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
@@ -18,38 +18,30 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        binding.bottomNavigation.setOnNavigationItemSelectedListener { item ->
-            when (item.itemId) {
-                R.id.like -> {
-                    Toast.makeText(this, "1", Toast.LENGTH_SHORT).show()
-                    true
-                }
-                R.id.home -> {
-                    supportFragmentManager.open {
-                        add(R.id.container, HomeFragment.newInstance(), null)
+        binding.bottomNavigation.setOnTabSelectListener(object :
+            AnimatedBottomBar.OnTabSelectListener {
+            override fun onTabSelected(
+                lastIndex: Int,
+                lastTab: AnimatedBottomBar.Tab?,
+                newIndex: Int,
+                newTab: AnimatedBottomBar.Tab
+            ) {
+                when (newIndex) {
+                    0 -> {
                     }
-                    true
+                    1 -> {
+                        supportFragmentManager.open {
+                            add(R.id.container, HomeFragment.newInstance(), null)
+                        }
+                    }
+                    2 -> {
+                    }
                 }
-                R.id.dislike -> {
-                    Toast.makeText(this, "3", Toast.LENGTH_SHORT).show()
-                    true
-                }
-                else -> false
             }
-        }
 
-        binding.bottomNavigation.setOnNavigationItemReselectedListener { item ->
-            when (item.itemId) {
-                R.id.like -> {
-                    Toast.makeText(this, "Уже нажато", Toast.LENGTH_SHORT).show()
-                }
-                R.id.home -> {
-                    Toast.makeText(this, "Уже нажато", Toast.LENGTH_SHORT).show()
-                }
-                R.id.dislike -> {
-                    Toast.makeText(this, "Уже нажато", Toast.LENGTH_SHORT).show()
-                }
+            // An optional method that will be fired whenever an already selected tab has been selected again.
+            override fun onTabReselected(index: Int, tab: AnimatedBottomBar.Tab) {
             }
-        }
+        })
     }
 }

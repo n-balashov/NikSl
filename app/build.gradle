@@ -86,7 +86,7 @@ dependencies {
     implementation "com.yuyakaido.android:card-stack-view:$card_stack_version"
 
     // Bottom navigation
-    // implementation 'com.gauravk.bubblenavigation:bubblenavigation:1.0.7'
+    implementation "nl.joery.animatedbottombar:library:$animatedbottombar_version"
 
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
