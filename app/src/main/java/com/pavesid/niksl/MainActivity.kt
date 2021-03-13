@@ -37,9 +37,6 @@ class MainActivity : AppCompatActivity() {
             ) {
                 when (newIndex) {
                     0 -> {
-                        supportFragmentManager.open {
-                            add(R.id.container, DoneFragment.newInstance(), null)
-                        }
                     }
                     1 -> {
                         supportFragmentManager.open {
@@ -47,6 +44,9 @@ class MainActivity : AppCompatActivity() {
                         }
                     }
                     2 -> {
+                        supportFragmentManager.open {
+                            add(R.id.container, DoneFragment.newInstance(), null)
+                        }
                     }
                 }
             }
