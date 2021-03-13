@@ -81,6 +81,7 @@ class HomeFragment : Fragment(R.layout.fragment_home), CardStackListener {
     }
 
     private fun subscribe() {
+        viewModel.loadNotViewedAchievements()
         viewModel.notViewedAchievements.observe(this.viewLifecycleOwner) {
             achievements = it
             achievementAdapter.achievements = it
