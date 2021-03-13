@@ -8,7 +8,11 @@ import com.pavesid.niksl.R
 import com.pavesid.niksl.data.model.Achievement
 import com.pavesid.niksl.databinding.FragmentHomeBinding
 import com.pavesid.niksl.viewBinding
-import com.yuyakaido.android.cardstackview.*
+import com.yuyakaido.android.cardstackview.CardStackLayoutManager
+import com.yuyakaido.android.cardstackview.CardStackListener
+import com.yuyakaido.android.cardstackview.Direction
+import com.yuyakaido.android.cardstackview.StackFrom
+import com.yuyakaido.android.cardstackview.SwipeableMethod
 
 class HomeFragment : Fragment(R.layout.fragment_home), CardStackListener {
 
