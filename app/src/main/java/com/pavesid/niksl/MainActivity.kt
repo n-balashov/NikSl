@@ -4,6 +4,7 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.pavesid.niksl.databinding.ActivityMainBinding
 import com.pavesid.niksl.extensions.open
+import com.pavesid.niksl.ui.done.DoneFragment
 import com.pavesid.niksl.ui.home.HomeFragment
 import dagger.hilt.android.AndroidEntryPoint
 import nl.joery.animatedbottombar.AnimatedBottomBar
@@ -18,6 +19,10 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        savedInstanceState ?: supportFragmentManager.open {
+            add(R.id.container, DoneFragment.newInstance(), null)
+        }
+
         binding.bottomNavigation.setOnTabSelectListener(object :
             AnimatedBottomBar.OnTabSelectListener {
             override fun onTabSelected(
@@ -28,6 +33,9 @@ class MainActivity : AppCompatActivity() {
             ) {
                 when (newIndex) {
                     0 -> {
+                        supportFragmentManager.open {
+                            add(R.id.container, DoneFragment.newInstance(), null)
+                        }
                     }
                     1 -> {
                         supportFragmentManager.open {
