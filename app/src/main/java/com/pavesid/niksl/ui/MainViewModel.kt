@@ -6,9 +6,9 @@ import androidx.lifecycle.viewModelScope
 import com.pavesid.niksl.data.DataRepository
 import com.pavesid.niksl.data.model.Achievement
 import dagger.hilt.android.lifecycle.HiltViewModel
-import javax.inject.Inject
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
 @HiltViewModel
 class MainViewModel @Inject constructor(

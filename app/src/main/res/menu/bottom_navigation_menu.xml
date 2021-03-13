@@ -4,15 +4,15 @@
         android:id="@+id/not_done"
         android:enabled="true"
         android:icon="@drawable/ic_cancel"
-        android:title="@string/not_done"/>
+        android:title="@string/not_done" />
     <item
         android:id="@+id/home"
         android:enabled="true"
         android:icon="@drawable/ic_warning"
-        android:title="@string/home"/>
+        android:title="@string/home" />
     <item
         android:id="@+id/done"
         android:enabled="true"
         android:icon="@drawable/ic_checkbox"
-        android:title="@string/done"/>
+        android:title="@string/done" />
 </menu>

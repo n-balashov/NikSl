@@ -2,20 +2,17 @@ package com.pavesid.niksl.ui.home
 
 import android.os.Bundle
 import android.view.View
-import android.view.animation.AccelerateInterpolator
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.pavesid.niksl.R
+import com.pavesid.niksl.core.viewBinding
 import com.pavesid.niksl.data.model.Achievement
 import com.pavesid.niksl.databinding.FragmentHomeBinding
-import com.pavesid.niksl.core.viewBinding
 import com.pavesid.niksl.ui.MainViewModel
 import com.yuyakaido.android.cardstackview.CardStackLayoutManager
 import com.yuyakaido.android.cardstackview.CardStackListener
 import com.yuyakaido.android.cardstackview.Direction
-import com.yuyakaido.android.cardstackview.Duration
 import com.yuyakaido.android.cardstackview.StackFrom
-import com.yuyakaido.android.cardstackview.SwipeAnimationSetting
 import com.yuyakaido.android.cardstackview.SwipeableMethod
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -26,7 +23,7 @@ class HomeFragment : Fragment(R.layout.fragment_home), CardStackListener {
 
     private val cardStackManager by lazy {
         CardStackLayoutManager(requireContext(), this@HomeFragment).apply {
-            setStackFrom(StackFrom.Left)
+            setStackFrom(StackFrom.BottomAndLeft)
             setVisibleCount(3)
             setScaleInterval(0.95f)
             setMaxDegree(20.0f)
@@ -49,7 +46,6 @@ class HomeFragment : Fragment(R.layout.fragment_home), CardStackListener {
 
         initView()
         subscribe()
-        setupButton()
     }
 
     override fun onCardDragging(direction: Direction?, ratio: Float) {
@@ -84,28 +80,6 @@ class HomeFragment : Fragment(R.layout.fragment_home), CardStackListener {
         viewModel.notViewedAchievements.observe(this.viewLifecycleOwner) {
             achievements = it
             achievementAdapter.achievements = it
-        }
-    }
-
-    private fun setupButton() {
-        binding.notDoneButton.setOnClickListener {
-            val setting = SwipeAnimationSetting.Builder()
-                .setDirection(Direction.Left)
-                .setDuration(Duration.Normal.duration)
-                .setInterpolator(AccelerateInterpolator())
-                .build()
-            cardStackManager.setSwipeAnimationSetting(setting)
-            binding.cardStackView.swipe()
-        }
-
-        binding.doneButton.setOnClickListener {
-            val setting = SwipeAnimationSetting.Builder()
-                .setDirection(Direction.Right)
-                .setDuration(Duration.Normal.duration)
-                .setInterpolator(AccelerateInterpolator())
-                .build()
-            cardStackManager.setSwipeAnimationSetting(setting)
-            binding.cardStackView.swipe()
         }
     }
 

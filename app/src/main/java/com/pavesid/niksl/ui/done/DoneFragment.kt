@@ -8,8 +8,8 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager.VERTICAL
 import com.pavesid.niksl.R
 import com.pavesid.niksl.core.OverlapDecoration
-import com.pavesid.niksl.databinding.FragmentDoneBinding
 import com.pavesid.niksl.core.viewBinding
+import com.pavesid.niksl.databinding.FragmentDoneBinding
 import com.pavesid.niksl.ui.MainViewModel
 import dagger.hilt.android.AndroidEntryPoint
 

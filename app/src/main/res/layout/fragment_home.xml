@@ -1,52 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".ui.home.HomeFragment"
-    android:background="@color/teal_200"
-    android:layout_gravity="center">
-
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/not_done_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerVertical="true"
-        android:src="@drawable/ic_cancel_color"
-        android:layout_margin="@dimen/spacing_normal_16"
-        app:tint="@null"
-        app:backgroundTint="@android:color/holo_red_light"
-        app:fabSize="auto"
-        app:rippleColor="@color/ripple_not_done"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/done_button"
-        app:layout_constraintStart_toStartOf="parent"
-        android:contentDescription="@string/not_done" />
-
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/done_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentEnd="true"
-        android:layout_centerVertical="true"
-        android:src="@drawable/ic_checkbox_color"
-        app:tint="@null"
-        android:layout_margin="@dimen/spacing_normal_16"
-        app:backgroundTint="@android:color/holo_green_light"
-        app:fabSize="auto"
-        app:rippleColor="@color/ripple_done"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@id/not_done_button"
-        android:contentDescription="@string/done" />
+    android:background="@drawable/blur_background"
+    tools:context=".ui.home.HomeFragment">
 
     <com.yuyakaido.android.cardstackview.CardStackView
-        android:id="@+id/card_stack_view"
+        android:id="@+id/cardStackView"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:clipToPadding="false"
-        android:padding="@dimen/spacing_extra_small_4"
-        app:layout_constraintBottom_toTopOf="@+id/not_done_button"
-        app:layout_constraintTop_toTopOf="parent" />
-</androidx.constraintlayout.widget.ConstraintLayout>
+        android:layout_height="match_parent" />
+</FrameLayout>

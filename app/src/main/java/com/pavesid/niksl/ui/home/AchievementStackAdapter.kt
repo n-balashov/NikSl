@@ -2,11 +2,9 @@ package com.pavesid.niksl.ui.home
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
 import coil.transform.RoundedCornersTransformation
-import com.pavesid.niksl.R
 import com.pavesid.niksl.data.model.Achievement
 import com.pavesid.niksl.databinding.AchievementCardBinding
 
@@ -38,8 +36,6 @@ class AchievementStackAdapter : RecyclerView.Adapter<AchievementStackAdapter.Vie
 
         fun bind(achievement: Achievement) {
             binding.apply {
-                card.setBackgroundColor(ContextCompat.getColor(root.context, android.R.color.transparent))
-                text.setBackgroundColor(ContextCompat.getColor(root.context, R.color.grey_active))
                 text.text = achievement.name
                 image.load(achievement.imagePath) {
                     crossfade(true)
