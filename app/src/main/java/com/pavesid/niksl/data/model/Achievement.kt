@@ -7,5 +7,6 @@ import androidx.room.PrimaryKey
 data class Achievement(
     @PrimaryKey val id: Long,
     val name: String,
-    val imagePath: String
+    val imagePath: String,
+    var done: Boolean?
 )
