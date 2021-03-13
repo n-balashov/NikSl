@@ -4,6 +4,8 @@ import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.recyclerview.widget.LinearLayoutManager
+import coil.load
 import com.pavesid.niksl.R
 import com.pavesid.niksl.core.viewBinding
 import com.pavesid.niksl.data.model.Achievement
@@ -17,6 +19,8 @@ class DetailFragment : Fragment(R.layout.fragment_detail) {
     private val viewModel: DetailViewModel by viewModels()
     private val binding: FragmentDetailBinding by viewBinding(FragmentDetailBinding::bind)
 
+    private lateinit var messageAdapter: MessageAdapter
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         initViews()
@@ -26,11 +30,23 @@ class DetailFragment : Fragment(R.layout.fragment_detail) {
     private fun initViews() {
         binding.root.setOnClickListener {}
         binding.send.setOnClickListener { viewModel.writeMessage("Now - ${Date().time}") }
+
+        messageAdapter = MessageAdapter()
+        binding.rvMessages.apply {
+            setHasFixedSize(true)
+            layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
+            adapter = messageAdapter
+        }
     }
 
     private fun subscribe() {
         viewModel.messages.observe(this.viewLifecycleOwner) {
-            binding.text.text = it.toString()
+            messageAdapter.messages = it
+        }
+
+        binding.apply {
+            achieveLayout.text.text = viewModel.achievement.name
+            achieveLayout.image.load(viewModel.achievement.imagePath)
         }
     }
 

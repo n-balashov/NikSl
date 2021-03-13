@@ -8,6 +8,7 @@ import androidx.lifecycle.ViewModel
 import com.google.firebase.database.ChildEventListener
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
 import com.pavesid.niksl.data.model.Achievement
@@ -22,12 +23,12 @@ class DetailViewModel @Inject constructor(
     savedStateHandle: SavedStateHandle
 ) : ViewModel() {
 
-    private val database = Firebase.database.reference.child("messages")
+    private var database: DatabaseReference
 
     private val _messages = MutableLiveData<List<Message>>(emptyList())
     val messages: LiveData<List<Message>> = _messages
 
-    val list = mutableListOf<Message>()
+    val list = mutableSetOf<Message>()
 
     val achievement: Achievement = savedStateHandle.get(ACHIEVEMENT_ARG)!!
 
@@ -35,7 +36,7 @@ class DetailViewModel @Inject constructor(
         override fun onChildAdded(snapshot: DataSnapshot, previousChildName: String?) {
             val message = snapshot.getValue(Message::class.java)
             list.add(message!!)
-            _messages.postValue(list)
+            _messages.postValue(list.toList())
         }
 
         override fun onChildChanged(snapshot: DataSnapshot, previousChildName: String?) {
@@ -52,9 +53,17 @@ class DetailViewModel @Inject constructor(
     }
 
     init {
+        database =
+            Firebase.database("https://niksl-99461-default-rtdb.europe-west1.firebasedatabase.app/").getReference(
+                achievement.id.toString()
+            )
         database.addChildEventListener(childEventListener)
-        database.get().addOnSuccessListener {
-            Log.i("firebase", "Got value ${it.value}")
+        database.get().addOnSuccessListener { snapshot ->
+            for (item in snapshot.children) {
+                val message = item.getValue(Message::class.java)
+                list.add(message!!)
+            }
+            _messages.postValue(list.toList())
         }.addOnFailureListener {
             Log.e("firebase", "Error getting data", it)
         }
