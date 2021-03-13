@@ -3,7 +3,6 @@ package com.pavesid.niksl.ui.home
 import android.os.Bundle
 import android.view.View
 import android.view.animation.AccelerateInterpolator
-import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.pavesid.niksl.R
@@ -57,11 +56,12 @@ class HomeFragment : Fragment(R.layout.fragment_home), CardStackListener {
     }
 
     override fun onCardSwiped(direction: Direction?) {
-        Toast.makeText(
-            requireContext(),
-            "onCardSwiped ${direction?.name} -> ${achievements[cardStackManager.topPosition - 1].id}",
-            Toast.LENGTH_SHORT
-        ).show()
+        val id = achievements[cardStackManager.topPosition - 1].id
+        if (direction?.name == "Left") {
+            viewModel.updateAchievement(false, id)
+        } else {
+            viewModel.updateAchievement(true, id)
+        }
     }
 
     override fun onCardRewound() {

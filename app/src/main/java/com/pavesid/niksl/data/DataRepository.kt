@@ -11,4 +11,6 @@ interface DataRepository {
     suspend fun getDoneAchievements(): List<Achievement>
 
     suspend fun getNotYetAchievements(): List<Achievement>
+
+    suspend fun updateAchievement(done: Boolean, id: Long)
 }

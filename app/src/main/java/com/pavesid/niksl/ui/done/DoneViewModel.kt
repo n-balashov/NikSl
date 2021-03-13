@@ -7,9 +7,9 @@ import androidx.lifecycle.viewModelScope
 import com.pavesid.niksl.data.DataRepository
 import com.pavesid.niksl.data.model.Achievement
 import dagger.hilt.android.lifecycle.HiltViewModel
+import javax.inject.Inject
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.launch
-import javax.inject.Inject
 
 @HiltViewModel
 class DoneViewModel @Inject constructor(
@@ -26,21 +26,19 @@ class DoneViewModel @Inject constructor(
     private val _notYetAchievements = MutableLiveData<List<Achievement>>()
     val notYetAchievements: LiveData<List<Achievement>> = _notYetAchievements
 
-    fun loadDoneAchievements() {
-        viewModelScope.launch(dispatcher) {
-            _doneAchievements.postValue(repository.getDoneAchievements())
-        }
+    fun loadDoneAchievements() = viewModelScope.launch(dispatcher) {
+        _doneAchievements.postValue(repository.getDoneAchievements())
     }
 
-    fun loadNotYetAchievements() {
-        viewModelScope.launch(dispatcher) {
-            _notYetAchievements.postValue(repository.getNotYetAchievements())
-        }
+    fun loadNotYetAchievements() = viewModelScope.launch(dispatcher) {
+        _notYetAchievements.postValue(repository.getNotYetAchievements())
     }
 
-    fun loadNotViewedAchievements() {
-        viewModelScope.launch(dispatcher) {
-            _notViewedAchievements.postValue(repository.getNotViewedAchievements())
-        }
+    fun loadNotViewedAchievements() = viewModelScope.launch(dispatcher) {
+        _notViewedAchievements.postValue(repository.getNotViewedAchievements())
+    }
+
+    fun updateAchievement(done: Boolean, id: Long) = viewModelScope.launch(dispatcher) {
+        repository.updateAchievement(done, id)
     }
 }

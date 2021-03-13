@@ -18,4 +18,7 @@ interface AchievementDao {
 
     @Query("SELECT * FROM achievement WHERE done = 0")
     fun getNotYet(): List<Achievement>
+
+    @Query("UPDATE achievement SET done = :done WHERE id LIKE :id ")
+    fun updateAchievement(done: Boolean, id: Long)
 }
