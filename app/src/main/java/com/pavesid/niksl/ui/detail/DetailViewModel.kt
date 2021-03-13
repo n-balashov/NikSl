@@ -58,7 +58,7 @@ class DetailViewModel @Inject constructor(
                 achievement.id.toString()
             )
         database.addChildEventListener(childEventListener)
-        database.get().addOnSuccessListener { snapshot ->
+        database.orderByChild("data").get().addOnSuccessListener { snapshot ->
             for (item in snapshot.children) {
                 val message = item.getValue(Message::class.java)
                 list.add(message!!)
@@ -74,8 +74,8 @@ class DetailViewModel @Inject constructor(
         database.removeEventListener(childEventListener)
     }
 
-    fun writeMessage(message: String) {
-        val mes = Message(UUID.randomUUID().toString(), message, achievement.id)
-        database.child(mes.id).setValue(mes)
+    fun writeMessage(text: String) {
+        val message = Message(UUID.randomUUID().toString(), text)
+        database.child(message.id).setValue(message)
     }
 }

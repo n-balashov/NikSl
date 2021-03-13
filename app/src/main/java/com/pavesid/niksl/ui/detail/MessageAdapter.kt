@@ -29,7 +29,7 @@ class MessageAdapter : RecyclerView.Adapter<MessageAdapter.MessageViewHolder>() 
 
         fun bind(message: Message) {
             binding.apply {
-                text.text = message.mes
+                text.text = message.text
                 val sdf = SimpleDateFormat("HH:mm dd.MM.yyyy")
                 date.text = sdf.format(Date(message.data))
             }

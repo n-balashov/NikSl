@@ -11,7 +11,6 @@ import com.pavesid.niksl.core.viewBinding
 import com.pavesid.niksl.data.model.Achievement
 import com.pavesid.niksl.databinding.FragmentDetailBinding
 import dagger.hilt.android.AndroidEntryPoint
-import java.util.Date
 
 @AndroidEntryPoint
 class DetailFragment : Fragment(R.layout.fragment_detail) {
@@ -28,14 +27,21 @@ class DetailFragment : Fragment(R.layout.fragment_detail) {
     }
 
     private fun initViews() {
-        binding.root.setOnClickListener {}
-        binding.send.setOnClickListener { viewModel.writeMessage("Now - ${Date().time}") }
+        binding.apply {
+            root.setOnClickListener {}
+            send.setOnClickListener {
+                if (etMessage.text.toString().isNotEmpty()) {
+                    viewModel.writeMessage(etMessage.text.toString())
+                    etMessage.text.clear()
+                }
+            }
 
-        messageAdapter = MessageAdapter()
-        binding.rvMessages.apply {
-            setHasFixedSize(true)
-            layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
-            adapter = messageAdapter
+            messageAdapter = MessageAdapter()
+            rvMessages.apply {
+                setHasFixedSize(true)
+                layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
+                adapter = messageAdapter
+            }
         }
     }
 

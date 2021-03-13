@@ -6,7 +6,6 @@ import java.util.Date
 @Serializable
 data class Message(
     val id: String = "",
-    val mes: String = "",
-    val achId: Long = 0L,
+    val text: String = "",
     val data: Long = Date().time
 )
