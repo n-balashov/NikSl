@@ -1,14 +1,17 @@
 package com.pavesid.niksl.data.local
 
+import androidx.lifecycle.LiveData
 import com.pavesid.niksl.data.model.Achievement
 
 interface LocalSource {
 
-    suspend fun getAllAchievements(): List<Achievement>
+    fun getAllAchievements(): LiveData<List<Achievement>>
 
-    suspend fun getNotViewedAchievements(): List<Achievement>
+    fun getNotViewedAchievements(): LiveData<List<Achievement>>
 
-    suspend fun getDoneAchievements(): List<Achievement>
+    fun getDoneAchievements(): LiveData<List<Achievement>>
 
-    suspend fun getNotYetAchievements(): List<Achievement>
+    fun getNotYetAchievements(): LiveData<List<Achievement>>
+
+    suspend fun updateAchievement(done: Boolean, id: Long)
 }

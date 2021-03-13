@@ -1,5 +1,6 @@
 package com.pavesid.niksl.ui.done
 
+import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
@@ -32,6 +33,7 @@ class DoneAdapter(
         fun bind(achievement: Achievement, position: Int, clickListener: (Achievement) -> Unit) {
             binding.apply {
                 card.rotation = if (position % 2 == 0) 12F else -12F
+                text.gravity = if (position % 2 == 0) Gravity.START else Gravity.END
                 text.text = achievement.name
                 image.load(achievement.imagePath) {
                     crossfade(true)

@@ -11,5 +11,5 @@ data class Achievement(
     @PrimaryKey val id: Long,
     val name: String,
     val imagePath: String,
-    val done: Boolean?
+    var done: Boolean?
 ) : Parcelable

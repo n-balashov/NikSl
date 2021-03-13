@@ -11,12 +11,13 @@ import com.pavesid.niksl.R
 import com.pavesid.niksl.core.OverlapDecoration
 import com.pavesid.niksl.core.viewBinding
 import com.pavesid.niksl.databinding.FragmentDoneBinding
+import com.pavesid.niksl.ui.MainViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class DoneFragment : Fragment(R.layout.fragment_done) {
 
-    private val viewModel: DoneViewModel by viewModels()
+    private val viewModel: MainViewModel by viewModels()
     private val binding: FragmentDoneBinding by viewBinding(FragmentDoneBinding::bind)
     private val mainActivity by lazy { activity as MainActivity }
 
@@ -44,7 +45,6 @@ class DoneFragment : Fragment(R.layout.fragment_done) {
     }
 
     private fun subscribe() {
-        viewModel.loadDoneAchievements()
         viewModel.doneAchievements.observe(this.viewLifecycleOwner) {
             doneAdapter.achievements = it
         }

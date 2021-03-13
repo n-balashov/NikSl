@@ -3,12 +3,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.home.HomeFragment"
-    android:background="@color/teal_200">
+    android:background="@drawable/blur_background"
+    tools:context=".ui.home.HomeFragment">
 
     <com.yuyakaido.android.cardstackview.CardStackView
         android:id="@+id/cardStackView"
-        android:layout_gravity="center"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 </FrameLayout>
