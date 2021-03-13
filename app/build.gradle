@@ -29,6 +29,11 @@ android {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
+
+    buildFeatures {
+        viewBinding true
+    }
+
     kotlinOptions {
         jvmTarget = '1.8'
     }
@@ -72,6 +77,9 @@ dependencies {
 
     // Coil
     implementation "io.coil-kt:coil:$coil_version"
+
+    // Bottom navigation
+    // implementation 'com.gauravk.bubblenavigation:bubblenavigation:1.0.7'
 
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
