@@ -17,12 +17,30 @@ class DoneViewModel @Inject constructor(
     private val dispatcher: CoroutineDispatcher
 ) : ViewModel() {
 
-    private val _achievements = MutableLiveData<List<Achievement>>()
-    val achievements: LiveData<List<Achievement>> = _achievements
+    private val _notViewedAchievements = MutableLiveData<List<Achievement>>()
+    val notViewedAchievements: LiveData<List<Achievement>> = _notViewedAchievements
 
-    init {
+    private val _doneAchievements = MutableLiveData<List<Achievement>>()
+    val doneAchievements: LiveData<List<Achievement>> = _doneAchievements
+
+    private val _notYetAchievements = MutableLiveData<List<Achievement>>()
+    val notYetAchievements: LiveData<List<Achievement>> = _notYetAchievements
+
+    fun loadDoneAchievements() {
         viewModelScope.launch(dispatcher) {
-            _achievements.postValue(repository.getAllAchievements())
+            _doneAchievements.postValue(repository.getDoneAchievements())
+        }
+    }
+
+    fun loadNotYetAchievements() {
+        viewModelScope.launch(dispatcher) {
+            _notYetAchievements.postValue(repository.getNotYetAchievements())
+        }
+    }
+
+    fun loadNotViewedAchievements() {
+        viewModelScope.launch(dispatcher) {
+            _notViewedAchievements.postValue(repository.getNotViewedAchievements())
         }
     }
 }

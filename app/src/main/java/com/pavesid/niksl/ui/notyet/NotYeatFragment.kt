@@ -1,4 +1,4 @@
-package com.pavesid.niksl.ui.done
+package com.pavesid.niksl.ui.notyet
 
 import android.os.Bundle
 import android.view.View
@@ -10,15 +10,16 @@ import com.pavesid.niksl.R
 import com.pavesid.niksl.core.OverlapDecoration
 import com.pavesid.niksl.databinding.FragmentDoneBinding
 import com.pavesid.niksl.core.viewBinding
+import com.pavesid.niksl.ui.done.DoneViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class DoneFragment : Fragment(R.layout.fragment_done) {
+class NotYeatFragment : Fragment(R.layout.fragment_done) {
 
     private val viewModel: DoneViewModel by viewModels()
     private val binding: FragmentDoneBinding by viewBinding(FragmentDoneBinding::bind)
 
-    private lateinit var doneAdapter: DoneAdapter
+    private lateinit var notYetAdapter: NotYetAdapter
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -28,26 +29,26 @@ class DoneFragment : Fragment(R.layout.fragment_done) {
     }
 
     private fun initView() {
-        doneAdapter = DoneAdapter()
+        notYetAdapter = NotYetAdapter()
         val moviesLayoutManager = LinearLayoutManager(context, VERTICAL, false)
         binding.rvDone.apply {
             setHasFixedSize(true)
             layoutManager = moviesLayoutManager
-            adapter = doneAdapter
+            adapter = notYetAdapter
 
             addItemDecoration(OverlapDecoration())
         }
     }
 
     private fun subscribe() {
-        viewModel.loadDoneAchievements()
-        viewModel.doneAchievements.observe(this.viewLifecycleOwner) {
-            doneAdapter.achievements = it
+        viewModel.loadNotYetAchievements()
+        viewModel.notYetAchievements.observe(this.viewLifecycleOwner) {
+            notYetAdapter.achievements = it
         }
     }
 
     companion object {
 
-        fun newInstance() = DoneFragment()
+        fun newInstance() = NotYeatFragment()
     }
 }
