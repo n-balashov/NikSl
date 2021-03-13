@@ -3,8 +3,8 @@ package com.pavesid.niksl
 import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.pavesid.niksl.databinding.ActivityMainBinding
+import com.pavesid.niksl.extensions.open
 
 class MainActivity : AppCompatActivity() {
 
@@ -15,14 +15,16 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        BottomNavigationView.OnNavigationItemSelectedListener { item ->
+        binding.bottomNavigation.setOnNavigationItemSelectedListener { item ->
             when (item.itemId) {
                 R.id.like -> {
                     Toast.makeText(this, "1", Toast.LENGTH_SHORT).show()
                     true
                 }
                 R.id.home -> {
-                    Toast.makeText(this, "2", Toast.LENGTH_SHORT).show()
+                    supportFragmentManager.open {
+                        add(R.id.container, HomeFragment.newInstance(), null)
+                    }
                     true
                 }
                 R.id.dislike -> {
@@ -32,7 +34,6 @@ class MainActivity : AppCompatActivity() {
                 else -> false
             }
         }
-
         binding.bottomNavigation.setOnNavigationItemReselectedListener { item ->
             when (item.itemId) {
                 R.id.like -> {
