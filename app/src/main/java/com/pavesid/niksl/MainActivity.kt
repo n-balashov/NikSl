@@ -4,8 +4,10 @@ import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.pavesid.niksl.databinding.ActivityMainBinding
+import dagger.hilt.android.AndroidEntryPoint
 import com.pavesid.niksl.extensions.open
 
+@AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
@@ -34,6 +36,7 @@ class MainActivity : AppCompatActivity() {
                 else -> false
             }
         }
+
         binding.bottomNavigation.setOnNavigationItemReselectedListener { item ->
             when (item.itemId) {
                 R.id.like -> {
