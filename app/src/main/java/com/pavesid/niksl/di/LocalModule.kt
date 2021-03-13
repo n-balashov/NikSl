@@ -19,7 +19,6 @@ object LocalModule {
     fun provideAppDatabase(@ApplicationContext context: Context): AppDatabase {
         return Room.databaseBuilder(context, AppDatabase::class.java, "sqlite.db")
             .createFromAsset("sqlite.db")
-            .fallbackToDestructiveMigration()
             .build()
     }
 }

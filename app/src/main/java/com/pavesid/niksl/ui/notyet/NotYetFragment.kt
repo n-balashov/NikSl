@@ -11,13 +11,13 @@ import com.pavesid.niksl.R
 import com.pavesid.niksl.core.OverlapDecoration
 import com.pavesid.niksl.core.viewBinding
 import com.pavesid.niksl.databinding.FragmentDoneBinding
-import com.pavesid.niksl.ui.done.DoneViewModel
+import com.pavesid.niksl.ui.MainViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class NotYetFragment : Fragment(R.layout.fragment_done) {
 
-    private val viewModel: DoneViewModel by viewModels()
+    private val viewModel: MainViewModel by viewModels()
     private val binding: FragmentDoneBinding by viewBinding(FragmentDoneBinding::bind)
 
     private lateinit var notYetAdapter: NotYetAdapter
@@ -31,6 +31,7 @@ class NotYetFragment : Fragment(R.layout.fragment_done) {
 
     private fun initView() {
         notYetAdapter = NotYetAdapter {
+            viewModel.updateAchievement(true, it.id)
             Toast.makeText(context, "Done", Toast.LENGTH_SHORT).show()
         }
         val moviesLayoutManager = LinearLayoutManager(context, VERTICAL, false)
@@ -44,7 +45,6 @@ class NotYetFragment : Fragment(R.layout.fragment_done) {
     }
 
     private fun subscribe() {
-        viewModel.loadNotYetAchievements()
         viewModel.notYetAchievements.observe(this.viewLifecycleOwner) {
             notYetAdapter.achievements = it
         }

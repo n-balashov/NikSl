@@ -1,6 +1,5 @@
 package com.pavesid.niksl.ui.home
 
-import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
@@ -42,7 +41,6 @@ class AchievementStackAdapter : RecyclerView.Adapter<AchievementStackAdapter.Vie
                 card.setBackgroundColor(ContextCompat.getColor(root.context, android.R.color.transparent))
                 text.setBackgroundColor(ContextCompat.getColor(root.context, R.color.grey_active))
                 text.text = achievement.name
-                root.gravity = Gravity.CENTER
                 image.load(achievement.imagePath) {
                     crossfade(true)
                     placeholder(android.R.color.black)
