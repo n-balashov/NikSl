@@ -4,9 +4,10 @@ import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.pavesid.niksl.databinding.ActivityMainBinding
-import dagger.hilt.android.AndroidEntryPoint
 import com.pavesid.niksl.extensions.open
+import com.pavesid.niksl.ui.done.DoneFragment
 import com.pavesid.niksl.ui.home.HomeFragment
+import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
@@ -18,10 +19,16 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        savedInstanceState ?: supportFragmentManager.open {
+            add(R.id.container, DoneFragment.newInstance(), null)
+        }
+
         binding.bottomNavigation.setOnNavigationItemSelectedListener { item ->
             when (item.itemId) {
                 R.id.like -> {
-                    Toast.makeText(this, "1", Toast.LENGTH_SHORT).show()
+                    supportFragmentManager.open {
+                        add(R.id.container, DoneFragment.newInstance(), null)
+                    }
                     true
                 }
                 R.id.home -> {
