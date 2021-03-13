@@ -9,6 +9,7 @@ import androidx.fragment.app.viewModels
 import com.pavesid.niksl.R
 import com.pavesid.niksl.data.model.Achievement
 import com.pavesid.niksl.databinding.FragmentHomeBinding
+import com.pavesid.niksl.core.viewBinding
 import com.pavesid.niksl.ui.done.DoneViewModel
 import com.pavesid.niksl.viewBinding
 import com.yuyakaido.android.cardstackview.CardStackLayoutManager
@@ -57,7 +58,11 @@ class HomeFragment : Fragment(R.layout.fragment_home), CardStackListener {
     }
 
     override fun onCardSwiped(direction: Direction?) {
-        Toast.makeText(requireContext(), "onCardSwiped ${direction?.name} -> ${achievements[cardStackManager.topPosition - 1].id}", Toast.LENGTH_SHORT).show()
+        Toast.makeText(
+            requireContext(),
+            "onCardSwiped ${direction?.name} -> ${achievements[cardStack.topPosition - 1].id}",
+            Toast.LENGTH_SHORT
+        ).show()
     }
 
     override fun onCardRewound() {
@@ -81,7 +86,8 @@ class HomeFragment : Fragment(R.layout.fragment_home), CardStackListener {
     }
 
     private fun subscribe() {
-        viewModel.achievements.observe(this.viewLifecycleOwner) {
+        viewModel.loadNotViewedAchievements()
+        viewModel.notViewedAchievements.observe(this.viewLifecycleOwner) {
             achievements = it
             achievementAdapter.achievements = it
         }

@@ -9,4 +9,9 @@ class DataRepositoryImpl @Inject constructor(
 ) : DataRepository {
 
     override suspend fun getAllAchievements(): List<Achievement> = localSource.getAllAchievements()
+    override suspend fun getNotViewedAchievements(): List<Achievement> = localSource.getNotViewedAchievements()
+
+    override suspend fun getDoneAchievements(): List<Achievement> = localSource.getDoneAchievements()
+
+    override suspend fun getNotYetAchievements(): List<Achievement> = localSource.getNotYetAchievements()
 }
