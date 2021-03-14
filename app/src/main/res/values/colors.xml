@@ -46,4 +46,5 @@
 
     <color name="custom_pink_for_statusbar">#ffccbc</color>
     <color name="custom_grayblue_for_tabs">#90a4ae</color>
+    <color name="custom_pink_for_card_overlay">#B7FBDACF</color>
 </resources>

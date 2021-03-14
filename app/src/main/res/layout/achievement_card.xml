@@ -55,7 +55,7 @@
         android:layout_alignTop="@+id/containerLayout"
         android:layout_alignEnd="@+id/containerLayout"
         android:layout_alignBottom="@+id/containerLayout"
-        android:background="#55000000">
+        android:background="@color/custom_pink_for_card_overlay">
 
         <ImageView
             android:layout_width="100dp"
