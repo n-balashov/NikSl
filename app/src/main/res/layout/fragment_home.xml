@@ -9,6 +9,44 @@
     <com.yuyakaido.android.cardstackview.CardStackView
         android:id="@+id/cardStackView"
         android:layout_width="match_parent"
-        tools:listitem="@layout/achievement_card"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent"
+        tools:listitem="@layout/achievement_card" />
+
+    <ImageView
+        android:layout_width="110dp"
+        android:layout_height="20dp"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="530dp"
+        android:alpha="0.6"
+        android:src="@drawable/arrowleftwhite" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="60dp"
+        android:layout_marginTop="550dp"
+        android:alpha="0.6"
+        android:fontFamily="@font/noteworthybold"
+        android:text="Ещё не успел"
+        android:textColor="@color/white"
+        android:textSize="14dp" />
+
+    <ImageView
+        android:layout_width="110dp"
+        android:layout_height="20dp"
+        android:layout_marginStart="240dp"
+        android:layout_marginTop="530dp"
+        android:alpha="0.6"
+        android:src="@drawable/arrowrightwhite" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="260dp"
+        android:layout_marginTop="550dp"
+        android:alpha="0.6"
+        android:fontFamily="@font/noteworthybold"
+        android:text="Успел"
+        android:textColor="@color/white"
+        android:textSize="14dp" />
 </FrameLayout>

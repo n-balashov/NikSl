@@ -61,7 +61,7 @@ internal class NotYetAdapter(
                 image.load(achievement.imagePath) {
                     crossfade(true)
                     placeholder(android.R.color.black)
-                    transformations(RoundedCornersTransformation(8f))
+                    transformations(RoundedCornersTransformation(4f))
                 }
                 btnDone.setOnClickListener { doneListener(achievement) }
             }

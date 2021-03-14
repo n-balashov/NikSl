@@ -10,13 +10,19 @@
         android:id="@+id/text"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textColor="@color/black"
+        android:layout_marginStart="16dp"
+        android:fontFamily="@font/noteworthybold"
+        android:textColor="@color/white"
+        android:textSize="18dp"
         tools:text="Test me please" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="end"
+        android:layout_marginEnd="8dp"
+        android:alpha="0.7"
+        android:textColor="@color/white"
         android:id="@+id/date"
         tools:text="22:00 01.01.2020" />
 

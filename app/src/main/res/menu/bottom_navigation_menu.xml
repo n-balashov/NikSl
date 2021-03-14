@@ -3,16 +3,16 @@
     <item
         android:id="@+id/not_done"
         android:enabled="true"
-        android:icon="@drawable/ic_cancel"
+        android:icon="@drawable/ic_no"
         android:title="@string/not_done" />
     <item
         android:id="@+id/home"
         android:enabled="true"
-        android:icon="@drawable/ic_warning"
+        android:icon="@drawable/ic_home"
         android:title="@string/home" />
     <item
         android:id="@+id/done"
         android:enabled="true"
-        android:icon="@drawable/ic_checkbox"
+        android:icon="@drawable/yes_icon_gray"
         android:title="@string/done" />
 </menu>
