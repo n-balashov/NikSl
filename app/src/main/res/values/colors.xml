@@ -45,4 +45,5 @@
     <color name="ripple_not_done">#22ED7563</color>
 
     <color name="custom_pink_for_statusbar">#ffccbc</color>
+    <color name="custom_grayblue_for_tabs">#90a4ae</color>
 </resources>

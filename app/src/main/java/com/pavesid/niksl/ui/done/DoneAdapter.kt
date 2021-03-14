@@ -20,7 +20,13 @@ class DoneAdapter(
         }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): AchievementViewHolder =
-        AchievementViewHolder(DoneItemBinding.inflate(LayoutInflater.from(parent.context), parent, false))
+        AchievementViewHolder(
+            DoneItemBinding.inflate(
+                LayoutInflater.from(parent.context),
+                parent,
+                false
+            )
+        )
 
     override fun onBindViewHolder(holder: AchievementViewHolder, position: Int) =
         holder.bind(achievements[position], position, clickListener)
