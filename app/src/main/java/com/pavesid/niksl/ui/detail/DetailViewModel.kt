@@ -5,6 +5,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
+import com.google.android.gms.auth.api.signin.GoogleSignInAccount
 import com.google.firebase.database.ChildEventListener
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
@@ -32,6 +33,8 @@ class DetailViewModel @Inject constructor(
     val list = mutableSetOf<Message>()
 
     val achievement: Achievement = savedStateHandle.get(ACHIEVEMENT_ARG)!!
+
+    var account: GoogleSignInAccount? = null
 
     private val childEventListener = object : ChildEventListener {
         override fun onChildAdded(snapshot: DataSnapshot, previousChildName: String?) {
@@ -80,7 +83,7 @@ class DetailViewModel @Inject constructor(
     }
 
     fun writeMessage(text: String) {
-        val message = Message(UUID.randomUUID().toString(), text)
+        val message = Message(UUID.randomUUID().toString(), text, account?.id)
         database.child(message.id).setValue(message)
     }
 }

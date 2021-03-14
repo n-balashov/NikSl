@@ -7,5 +7,6 @@ import java.util.Date
 data class Message(
     val id: String = "",
     val text: String = "",
+    val userId: String? = "",
     val data: Long = Date().time
 )
