@@ -3,6 +3,8 @@ package com.pavesid.niksl.ui.detail
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
+import android.view.View.GONE
+import android.view.View.VISIBLE
 import android.widget.Toast
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
@@ -29,13 +31,13 @@ class DetailFragment : Fragment(R.layout.fragment_detail) {
     private val binding: FragmentDetailBinding by viewBinding(FragmentDetailBinding::bind)
     private val mainActivity by lazy { activity as MainActivity }
 
-    private lateinit var messageAdapter: MessageAdapter
+    private val messageAdapter: MessageAdapter = MessageAdapter()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        initAccount()
         initViews()
         subscribe()
-        initAccount()
     }
 
     private fun initAccount() {
@@ -43,7 +45,9 @@ class DetailFragment : Fragment(R.layout.fragment_detail) {
             successAuth(it)
             return
         }
+    }
 
+    private fun requestAuth() {
         val gso = Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
             .requestProfile()
             .build()
@@ -53,6 +57,12 @@ class DetailFragment : Fragment(R.layout.fragment_detail) {
     private fun successAuth(account: GoogleSignInAccount?) {
         viewModel.account = account
         messageAdapter.account = account
+
+        binding.apply {
+            etMessage.visibility = VISIBLE
+            send.visibility = VISIBLE
+            auth.visibility = GONE
+        }
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
@@ -64,7 +74,6 @@ class DetailFragment : Fragment(R.layout.fragment_detail) {
             } catch (e: Exception) {
                 e.printStackTrace()
                 Toast.makeText(mainActivity, "Error when auth", Toast.LENGTH_SHORT).show()
-                mainActivity.onBackPressed()
             }
         }
     }
@@ -79,12 +88,13 @@ class DetailFragment : Fragment(R.layout.fragment_detail) {
                 }
             }
 
-            messageAdapter = MessageAdapter()
             rvMessages.apply {
                 setHasFixedSize(true)
                 layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
                 adapter = messageAdapter
             }
+
+            auth.setOnClickListener { requestAuth() }
         }
     }
 
