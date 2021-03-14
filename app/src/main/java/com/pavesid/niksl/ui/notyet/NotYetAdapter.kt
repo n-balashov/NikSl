@@ -10,7 +10,8 @@ import com.pavesid.niksl.data.model.Achievement
 import com.pavesid.niksl.databinding.NotyetItemBinding
 
 internal class NotYetAdapter(
-    private val doneListener: (Achievement) -> Unit
+    private val doneListener: (Achievement) -> Unit,
+    private val clickListener: (Achievement) -> Unit
 ) : RecyclerView.Adapter<NotYetAdapter.AchievementViewHolder>() {
 
     private var achievements: List<Achievement> = emptyList()
@@ -22,7 +23,8 @@ internal class NotYetAdapter(
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): AchievementViewHolder =
         AchievementViewHolder(
             NotyetItemBinding.inflate(LayoutInflater.from(parent.context), parent, false),
-            doneListener
+            doneListener,
+            clickListener
         )
 
     override fun onBindViewHolder(holder: AchievementViewHolder, position: Int) =
@@ -50,7 +52,8 @@ internal class NotYetAdapter(
 
     class AchievementViewHolder(
         private val binding: NotyetItemBinding,
-        private val doneListener: (Achievement) -> Unit
+        private val doneListener: (Achievement) -> Unit,
+        private val clickListener: (Achievement) -> Unit
     ) :
         RecyclerView.ViewHolder(binding.root) {
 
@@ -64,6 +67,7 @@ internal class NotYetAdapter(
                     transformations(RoundedCornersTransformation(4f))
                 }
                 btnDone.setOnClickListener { doneListener(achievement) }
+                root.setOnClickListener { clickListener(achievement) }
             }
         }
     }

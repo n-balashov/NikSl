@@ -42,25 +42,26 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginRight="4dp"
-            android:inputType="textShortMessage"
+            android:backgroundTint="#ffccbc"
             android:fontFamily="@font/noteworthybold"
+            android:inputType="textShortMessage"
+            android:lines="1"
             android:textColor="@color/white"
             android:textSize="18dp"
-            android:lines="1"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toLeftOf="@+id/send" />
 
-        <ImageButton
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/send"
-            android:layout_width="60dp"
-            android:layout_height="34dp"
+            android:layout_width="55dp"
+            android:layout_height="40dp"
             android:layout_marginEnd="4dp"
-            android:layout_marginBottom="4dp"
-            android:background="@color/custom_pink_for_statusbar"
-            android:src="@drawable/ic_send"
+            app:backgroundTint="@color/custom_pink_for_statusbar"
+            app:icon="@drawable/ic_send"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent" />
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
 
