@@ -31,6 +31,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:abb_tabs="@menu/bottom_navigation_menu"
         app:abb_tabColor="@color/custom_grayblue_for_tabs"
+        app:abb_badgeBackgroundColor="@color/custom_grayblue_for_tabs"
         app:abb_rippleEnabled="true"
         app:abb_selectedIndex="1" />
 </androidx.constraintlayout.widget.ConstraintLayout>
