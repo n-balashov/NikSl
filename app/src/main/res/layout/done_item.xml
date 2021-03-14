@@ -6,6 +6,7 @@
     android:layout_height="wrap_content"
     android:layout_margin="60dp"
     android:background="@color/white"
+    android:elevation="8dp"
     android:orientation="vertical"
     android:padding="16dp"
     tools:rotation="12">
