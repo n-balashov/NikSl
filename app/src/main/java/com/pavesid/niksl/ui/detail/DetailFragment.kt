@@ -2,6 +2,8 @@ package com.pavesid.niksl.ui.detail
 
 import android.content.Intent
 import android.os.Bundle
+import android.view.KeyEvent
+import android.view.KeyEvent.ACTION_DOWN
 import android.view.View
 import android.view.View.GONE
 import android.view.View.VISIBLE
@@ -95,6 +97,19 @@ class DetailFragment : Fragment(R.layout.fragment_detail) {
             }
 
             auth.setOnClickListener { requestAuth() }
+
+            etMessage.setOnKeyListener { _, keyCode, event ->
+                if (event.action == ACTION_DOWN) {
+                    if (keyCode == KeyEvent.KEYCODE_ENTER) {
+                        if (etMessage.text.toString().isNotEmpty()) {
+                            viewModel.writeMessage(etMessage.text.toString())
+                            etMessage.text.clear()
+                        }
+                        return@setOnKeyListener true
+                    }
+                }
+                return@setOnKeyListener false
+            }
         }
     }
 
