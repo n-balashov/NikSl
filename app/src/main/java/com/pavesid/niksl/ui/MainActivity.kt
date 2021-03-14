@@ -1,7 +1,6 @@
 package com.pavesid.niksl.ui
 
 import android.os.Bundle
-import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import com.pavesid.niksl.R
 import com.pavesid.niksl.data.model.Achievement
@@ -19,8 +18,6 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
 
-    private val viewModel: MainViewModel by viewModels()
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
@@ -31,7 +28,6 @@ class MainActivity : AppCompatActivity() {
         }
 
         initView()
-        subscribe()
     }
 
     private fun initView() {
@@ -66,29 +62,6 @@ class MainActivity : AppCompatActivity() {
             override fun onTabReselected(index: Int, tab: AnimatedBottomBar.Tab) {
             }
         })
-    }
-
-    private fun subscribe() {
-        viewModel.apply {
-            notViewedAchievements.observe(this@MainActivity) {
-                binding.bottomNavigation.setBadgeAtTabIndex(
-                    1,
-                    AnimatedBottomBar.Badge(it.size.toString())
-                )
-            }
-            doneAchievements.observe(this@MainActivity) {
-                binding.bottomNavigation.setBadgeAtTabIndex(
-                    2,
-                    AnimatedBottomBar.Badge(it.size.toString())
-                )
-            }
-            notYetAchievements.observe(this@MainActivity) {
-                binding.bottomNavigation.setBadgeAtTabIndex(
-                    0,
-                    AnimatedBottomBar.Badge(it.size.toString())
-                )
-            }
-        }
     }
 
     fun openDetails(achievement: Achievement) {
