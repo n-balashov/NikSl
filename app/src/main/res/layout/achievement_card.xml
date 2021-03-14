@@ -41,10 +41,10 @@
         android:background="#55000000">
 
         <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
             android:layout_gravity="center"
-            android:src="@drawable/skip_white_120dp" />
+            android:src="@drawable/ic_no" />
     </FrameLayout>
 
     <FrameLayout
@@ -58,9 +58,9 @@
         android:background="#55000000">
 
         <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
             android:layout_gravity="center"
-            android:src="@drawable/like_white_120dp" />
+            android:src="@drawable/ic_yes" />
     </FrameLayout>
 </RelativeLayout>
